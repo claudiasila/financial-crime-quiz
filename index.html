@@ -112,7 +112,20 @@
       transition: width 0.3s ease;
     }
 
+    .definition-toggle {
+      background: #dbeafe;
+      color: #1e3a8a;
+      border: 2px solid #1e3a8a;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .definition-toggle:hover {
+      background: #bfdbfe;
+    }
+
     .definition {
+      display: none;
       background: linear-gradient(135deg, #eff6ff, #eef2ff);
       padding: 18px;
       border-left: 6px solid #2563eb;
@@ -120,6 +133,10 @@
       border-radius: 14px;
       line-height: 1.6;
       font-size: 17px;
+    }
+
+    .definition.show {
+      display: block;
     }
 
     .question {
@@ -256,7 +273,9 @@
       <div class="progress-bar" id="progressBar"></div>
     </div>
 
+    <button class="definition-toggle" id="definitionToggleBtn" onclick="toggleDefinition()">Show Definition</button>
     <div class="definition" id="definition"></div>
+
     <div class="question" id="question"></div>
     <div id="options"></div>
     <div id="feedback"></div>
@@ -292,202 +311,6 @@
           question: "Which of the following is a category of financial crime?",
           options: ["Internet banking", "Crime narcotics", "Payment routing", "SWIFT"],
           answer: 1
-        },
-        {
-          topic: "Week 1 - Money Laundering",
-          definition: "Money laundering involves three stages: Placement, Layering, Integration.",
-          question: "What are the 3 stages of money laundering?",
-          options: ["Deposit, Transfer, Withdraw", "Placement, Layering, Integration", "Input, Process, Output", "Hide, Move, Spend"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Placement",
-          definition: "Placement: Introducing illegal money into the financial system.",
-          question: "Which stage involves introducing illegal money into the financial system?",
-          options: ["Layering", "Integration", "Placement", "Monitoring"],
-          answer: 2
-        },
-        {
-          topic: "Week 1 - Layering",
-          definition: "Layering: Moving money through multiple transactions to hide its origin.",
-          question: "Which stage involves moving money through multiple transactions to hide its origin?",
-          options: ["Placement", "Layering", "Integration", "Monitoring"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Integration",
-          definition: "Integration: Reintroducing the money as legitimate funds.",
-          question: "Which stage involves reintroducing illegal money as legitimate funds?",
-          options: ["Placement", "Layering", "Integration", "Monitoring"],
-          answer: 2
-        },
-        {
-          topic: "Week 1 - 2. Financial Crime Compliance (FCC)",
-          definition: "Financial Crime Compliance (FCC) is the umbrella that includes AML and sanctions screening.",
-          question: "Financial Crime Compliance (FCC) includes:",
-          options: ["Only transaction monitoring", "AML and sanctions screening", "Only customer service", "Only payments"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Two Types of Sanction Screening",
-          definition: "Name Screening (The 'Who') and Transaction Screening (The 'What').",
-          question: "Name Screening focuses on:",
-          options: ["Transactions", "Behaviour patterns", "The person ('Who')", "Payment speed"],
-          answer: 2
-        },
-        {
-          topic: "Week 1 - Two Types of Sanction Screening",
-          definition: "Name Screening (The 'Who') and Transaction Screening (The 'What').",
-          question: "Transaction Screening focuses on:",
-          options: ["The person", "The transaction ('What')", "Only onboarding", "Customer history"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Name Screening",
-          definition: "When it happens: At onboarding, then periodically. What is screened: The static data. Full name, Date of Birth, Country of Residence, and Beneficial Owners.",
-          question: "When does Name Screening usually happen?",
-          options: ["Only after transactions", "At onboarding and periodically", "Only once a year", "Only during payment processing"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Name Screening",
-          definition: "What is screened: The static data. Full name, Date of Birth, Country of Residence, and Beneficial Owners.",
-          question: "What type of data is checked in Name Screening?",
-          options: ["Transaction amounts", "Static data (name, DOB, country, beneficial owner)", "Payment speed", "Exchange rates"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Transaction Screening",
-          definition: "When it happens: Before the money leaves the bank (ex-ante). The payment is paused while the system runs the check.",
-          question: "When does Transaction Screening happen?",
-          options: ["After the payment is completed", "Before the payment leaves the bank (real-time)", "Once a year", "Only at onboarding"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Transaction Screening",
-          definition: "Goal: To stop a specific movement of money.",
-          question: "What is the goal of Transaction Screening?",
-          options: ["Open new accounts", "Stop specific suspicious payments", "Monitor long-term behaviour", "Reduce bank costs"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Transaction Screening SWIFT Fields",
-          definition: "Field 50: Sender. Field 59: Receiver. Field 70: Remittance info (the 'Why').",
-          question: "In transaction screening, what does Field 70 represent?",
-          options: ["Sender", "Receiver", "Remittance information (the reason for payment)", "Bank code"],
-          answer: 2
-        },
-        {
-          topic: "Week 1 - Transaction Screening SWIFT Fields",
-          definition: "Field 50: Sender. Field 59: Receiver. Field 70: Remittance info (the 'Why').",
-          question: "Which SWIFT field represents the sender?",
-          options: ["Field 50", "Field 59", "Field 70", "Field 103"],
-          answer: 0
-        },
-        {
-          topic: "Week 1 - Transaction Screening SWIFT Fields",
-          definition: "Field 50: Sender. Field 59: Receiver. Field 70: Remittance info (the 'Why').",
-          question: "Which SWIFT field represents the receiver?",
-          options: ["Field 50", "Field 59", "Field 70", "Field 202"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Transaction Screening",
-          definition: "What is screened includes sender, receiver, remittance info, bank names and vessel names.",
-          question: "Which of the following can also be screened in transaction screening?",
-          options: ["Only transaction amounts", "Bank names and vessel names", "Only currencies", "Only account balances"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - 4. Shell Company",
-          definition: "A shell company is a business that has no real operations or employees and is often used to hide the true ownership of money or assets.",
-          question: "A shell company is:",
-          options: ["A company with many employees", "A company with no real operations used to hide ownership", "A government company", "A type of bank"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Transaction Monitoring vs Screening",
-          definition: "Screening is about Sanctions. Monitoring is about Money Laundering.",
-          question: "Transaction Monitoring is mainly used for:",
-          options: ["Sanctions", "Money laundering detection", "Payment routing", "Currency exchange"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Transaction Monitoring vs Screening",
-          definition: "Screening is about Sanctions. Monitoring is about Money Laundering.",
-          question: "Screening is mainly used for:",
-          options: ["Behaviour analysis", "Sanctions checks", "Customer service", "Marketing"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Role of Financial Institutions",
-          definition: "Banks and financial institutions act as gatekeepers of the global financial system.",
-          question: "Financial institutions act as:",
-          options: ["Regulators", "Gatekeepers of the financial system", "Customers", "Payment processors only"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Role of Financial Institutions",
-          definition: "Financial institutions are required to conform to regulations such as KYC, CDD, Sanction screening and transaction monitoring.",
-          question: "Which of the following is part of their role?",
-          options: ["KYC", "Sanction screening", "Transaction monitoring", "All of the above"],
-          answer: 3
-        },
-        {
-          topic: "Week 1 - 6. Embargo Countries",
-          definition: "An embargo is the most severe type of sanction it’s a total ban on trade with a specific country.",
-          question: "An embargo is:",
-          options: ["A tax on trade", "A total ban on trade with a country", "A type of payment", "A banking fee"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Embargo Countries",
-          definition: "Examples include North Korea, Iran, Cuba, Syria.",
-          question: "Which of the following is an example of an embargo country?",
-          options: ["Germany", "North Korea", "Canada", "Spain"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - Embargo Countries",
-          definition: "Examples include North Korea, Iran, Cuba, Syria.",
-          question: "Which of the following is another example of an embargo country mentioned in your notes?",
-          options: ["Spain", "Canada", "Iran", "Portugal"],
-          answer: 2
-        },
-        {
-          topic: "Week 1 - Types of Embargoes",
-          definition: "Types include Arms/Military Embargo, Financial Embargo, Sector-Specific Embargo, Strategic Resource Embargo.",
-          question: "Which type of embargo focuses on a specific industry such as oil or technology?",
-          options: ["Total embargo", "Financial embargo", "Sector-specific embargo", "Arms embargo"],
-          answer: 2
-        },
-        {
-          topic: "Week 1 - 8. Five International Regulatory Bodies",
-          definition: "United Nations Security Council (UNSC) imposes global sanctions that are binding for all UN member states.",
-          question: "Which organisation imposes global sanctions binding for all UN member states?",
-          options: ["OFAC", "FATF", "UNSC", "EU"],
-          answer: 2
-        },
-        {
-          topic: "Week 1 - 8. Five International Regulatory Bodies",
-          definition: "Office of Foreign Assets Control (OFAC) is a U.S. authority that imposes sanctions.",
-          question: "Which organisation is a U.S. authority that imposes sanctions?",
-          options: ["UNSC", "OFAC", "EU", "FATF"],
-          answer: 1
-        },
-        {
-          topic: "Week 1 - 8. Five International Regulatory Bodies",
-          definition: "HM Treasury (OFSI) is the UK authority responsible for enforcing sanctions.",
-          question: "Which organisation enforces sanctions in the UK?",
-          options: ["EU", "FATF", "HM Treasury (OFSI)", "UNSC"],
-          answer: 2
-        },
-        {
-          topic: "Week 1 - 8. Five International Regulatory Bodies",
-          definition: "Financial Action Task Force (FATF) does not impose direct sanctions but sets global standards and identifies high-risk countries.",
-          question: "Which organisation sets global standards and identifies high-risk countries but does NOT impose sanctions?",
-          options: ["UNSC", "OFAC", "EU", "FATF"],
-          answer: 3
         }
       ],
 
@@ -505,188 +328,6 @@
           question: "Payments can be initiated through:",
           options: ["Only internet banking", "Only phone banking", "Different channels such as internet banking, phone banking, or EFTs", "Only cash"],
           answer: 2
-        },
-        {
-          topic: "Week 2 - 2. Payment Channels",
-          definition: "Payments can be initiated through different channels such as internet banking, phone banking, or Electronic Funds Transfers (EFTs).",
-          question: "Which of the following is a payment channel?",
-          options: ["Internet banking", "Phone banking", "Electronic Funds Transfer (EFT)", "All of the above"],
-          answer: 3
-        },
-        {
-          topic: "Week 2 - 3. Native Currency (Domestic Payment)",
-          definition: "A payment made in the local currency of the country where the bank is located. Example: GBP payment between two banks in the UK. These usually move through local clearing systems like Faster Payments or CHAPS in the UK, Fedwire or CHIPS in the USA.",
-          question: "A domestic payment is:",
-          options: ["A payment in a foreign currency", "A payment made in the local currency of the country where the bank is located", "A payment between two different countries", "A cryptocurrency transfer"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - 3. Native Currency (Domestic Payment)",
-          definition: "A payment made in the local currency of the country where the bank is located. Example: GBP payment between two banks in the UK.",
-          question: "Which of the following is an example of a domestic payment?",
-          options: ["USD payment from the UK to the USA", "GBP payment between two banks in the UK", "EUR payment from France to Germany", "Bitcoin transfer"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - 3. Native Currency (Domestic Payment)",
-          definition: "These usually move through local clearing systems like Faster Payments or CHAPS in the UK, Fedwire or CHIPS in the USA.",
-          question: "Domestic payments usually move through:",
-          options: ["International stock markets", "Local clearing systems", "Cryptocurrency exchanges", "Social media platforms"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - 4. Non-Native Currency (Cross-border Payment)",
-          definition: "A payment made in a currency that is foreign to at least one of the banks involved (e.g., a bank in London sending USD to a bank in Japan).",
-          question: "A cross-border payment is:",
-          options: ["A payment in local currency only", "A payment made in a currency foreign to at least one of the banks involved", "A payment within the same country only", "A cash transaction only"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - 4. Non-Native Currency (Cross-border Payment)",
-          definition: "These payments often go through the correspondent banking network because the sending bank may not have a direct account relationship with the receiving bank in that currency.",
-          question: "Why do cross-border payments often use a correspondent bank?",
-          options: ["To reduce transaction speed", "Because the sending bank may not have a direct account relationship with the receiving bank in that currency", "To avoid regulations", "Because local clearing systems are always available"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - 5. What is Payment Routing?",
-          definition: "Payment routing is the path a payment follows through the banking system to reach the final beneficiary.",
-          question: "Payment routing is:",
-          options: ["The cost of a payment", "The path a payment follows through the banking system to reach the final beneficiary", "A type of financial crime", "A payment channel"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - No Correspondent Bank (Direct)",
-          definition: "The payment is processed directly between the sending and receiving banks without using a third (correspondent) bank.",
-          question: "In a direct payment (no correspondent bank):",
-          options: ["A third bank is always required", "The payment goes through multiple intermediary banks", "The payment is processed directly between the sending and receiving banks", "The payment cannot be completed"],
-          answer: 2
-        },
-        {
-          topic: "Week 2 - Single Correspondent Bank",
-          definition: "The two banks do not have a direct relationship but both hold accounts with one common correspondent (intermediary) bank.",
-          question: "A single correspondent bank is used when:",
-          options: ["Banks have a direct relationship", "No banks are involved", "Two banks use one common intermediary bank", "Payments are only domestic"],
-          answer: 2
-        },
-        {
-          topic: "Week 2 - 6. Introduction to SWIFT",
-          definition: "SWIFT (Society for Worldwide Interbank Financial Telecommunication) is a secure global messaging network used by banks to send payment instructions.",
-          question: "SWIFT is:",
-          options: ["A type of bank account", "A secure global messaging network used by banks to send payment instructions", "A payment itself", "A type of currency"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - SWIFT Code",
-          definition: "SWIFT Code structure: Bank name 4 letters, Country code 2 letters, Head office code 2 letters, BIC/Branch Identification Code 3 characters.",
-          question: "In a SWIFT code, how many letters represent the bank name?",
-          options: ["2", "3", "4", "6"],
-          answer: 2
-        },
-        {
-          topic: "Week 2 - SWIFT Code",
-          definition: "SWIFT Code structure: Bank name 4 letters, Country code 2 letters, Head office code 2 letters, BIC/Branch Identification Code 3 characters.",
-          question: "What does the country code in a SWIFT code represent?",
-          options: ["The bank branch", "The type of transaction", "The country where the bank is located", "The currency used"],
-          answer: 2
-        },
-        {
-          topic: "Week 2 - SWIFT Code and IBAN",
-          definition: "A SWIFT Code (BIC) is an 8 or 11-character code that identifies a specific bank and branch. IBAN identifies a specific bank account including country and bank details.",
-          question: "What does IBAN identify?",
-          options: ["A bank branch only", "A specific bank account including country and bank details", "A payment message", "A SWIFT network"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - 7. Basic SWIFT Message Types",
-          definition: "MT103 is used for payments on behalf of customers (individuals or businesses). This is the most common payment message.",
-          question: "MT103 is used for:",
-          options: ["Communication between banks only", "Payments on behalf of customers", "Internal bank transfers only", "Cryptocurrency transactions"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - MT202",
-          definition: "MT202 is used for transfers between banks, typically for settlement or liquidity purposes. No direct customer payment involved.",
-          question: "MT202 is used for:",
-          options: ["Payments on behalf of customers", "Transfers between banks", "Personal bank transfers", "Cash withdrawals"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - MT199 / MT299",
-          definition: "MT199 / MT299 are used for communication between banks (e.g., queries, clarifications, or missing information).",
-          question: "MT199 / MT299 are used for:",
-          options: ["Customer payments", "Bank-to-bank communication", "Cash deposits", "Currency exchange"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - 8. Trade Message Types (SWIFT Category 7)",
-          definition: "Trade messages are used in Trade Finance, mainly for Letters of Credit (LC) and Guarantees. These are conditional payments.",
-          question: "Trade messages are mainly used for:",
-          options: ["Personal banking", "Trade Finance (Letters of Credit and Guarantees)", "Cryptocurrency transactions", "ATM withdrawals"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - MT700",
-          definition: "MT700 is used to open a Letter of Credit. This is the main message that starts the trade transaction.",
-          question: "MT700 is used to:",
-          options: ["Amend a Letter of Credit", "Open a Letter of Credit", "Cancel a payment", "Send a free format message"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - MT707",
-          definition: "MT707 is used to amend a Letter of Credit.",
-          question: "Which SWIFT message is used to amend a Letter of Credit?",
-          options: ["MT700", "MT707", "MT760", "MT799"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - MT760",
-          definition: "MT760 is used for Guarantee / Standby Letter of Credit.",
-          question: "MT760 is used for:",
-          options: ["Opening a Letter of Credit", "Amending a Letter of Credit", "Guarantee / Standby Letter of Credit", "Free format communication"],
-          answer: 2
-        },
-        {
-          topic: "Week 2 - Nostro/Vostro Accounts",
-          definition: "Nostro: 'Our account with you' is a domestic bank's account held in a foreign bank in their currency. Vostro: 'Your account with us' is a foreign bank's account held in a domestic bank.",
-          question: "From the sender’s perspective, the account held in a foreign bank is called:",
-          options: ["Vostro", "Nostro", "IBAN", "SWIFT"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - Payment Routing - No Correspondent Bank",
-          definition: "John is the Ordering Customer. Citi Bank is the Ordering Institution. AXIS Bank is the Beneficiary Institution. Tom is the Beneficiary.",
-          question: "Who is the ordering customer?",
-          options: ["AXIS Bank", "Tom", "John", "Citi Bank"],
-          answer: 2
-        },
-        {
-          topic: "Week 2 - Payment Routing - No Correspondent Bank",
-          definition: "MT101 starts the payment instruction. MT103 contains all the payment details for compliance screening. MT910 confirms credit.",
-          question: "Which message contains the payment details for compliance screening?",
-          options: ["MT101", "MT910", "MT103", "MT199"],
-          answer: 2
-        },
-        {
-          topic: "Week 2 - Payment Routing - Two Correspondent Banks",
-          definition: "Field 50a is Ordering Customer. Field 56a is Intermediary Institution. Field 57a is Account with Institution. Field 59a is Beneficiary Customer.",
-          question: "Which SWIFT field represents the ordering customer?",
-          options: ["Field 56a", "Field 57a", "Field 50a", "Field 59a"],
-          answer: 2
-        },
-        {
-          topic: "Week 2 - Payment Routing - Two Correspondent Banks",
-          definition: "Field 50a is Ordering Customer. Field 56a is Intermediary Institution. Field 57a is Account with Institution. Field 59a is Beneficiary Customer.",
-          question: "Which field represents the intermediary institution?",
-          options: ["Field 50a", "Field 56a", "Field 57a", "Field 59a"],
-          answer: 1
-        },
-        {
-          topic: "Week 2 - Payment Routing - Two Correspondent Banks",
-          definition: "Routing chain: BNP Paribas → Wells Fargo → Bank of New York Mellon → Santander ES → Beneficiary.",
-          question: "Who does BNP Paribas send the message to first?",
-          options: ["Bank of New York Mellon", "Santander ES", "Wells Fargo", "Beneficiary"],
-          answer: 2
         }
       ]
     };
@@ -695,6 +336,7 @@
     let currentQuestion = 0;
     let score = 0;
     let answered = false;
+    let definitionVisible = false;
 
     function getCurrentQuiz() {
       return quizzes[selectedWeek];
@@ -714,6 +356,8 @@
 
     function loadQuestion() {
       answered = false;
+      definitionVisible = false;
+
       const quizData = getCurrentQuiz();
       const current = quizData[currentQuestion];
       const progress = ((currentQuestion + 1) / quizData.length) * 100;
@@ -721,7 +365,15 @@
 
       document.getElementById("topic").textContent = current.topic;
       document.getElementById("badge").textContent = weekText;
-      document.getElementById("definition").textContent = current.definition;
+
+      const definitionBox = document.getElementById("definition");
+      definitionBox.textContent = current.definition;
+      definitionBox.classList.remove("show");
+
+      const definitionBtn = document.getElementById("definitionToggleBtn");
+      definitionBtn.textContent = "Show Definition";
+      definitionBtn.style.display = "inline-block";
+
       document.getElementById("question").textContent = current.question;
       document.getElementById("feedback").textContent = "";
       document.getElementById("progressBar").style.width = progress + "%";
@@ -737,6 +389,21 @@
         button.onclick = () => checkAnswer(index, button);
         optionsDiv.appendChild(button);
       });
+    }
+
+    function toggleDefinition() {
+      const definitionBox = document.getElementById("definition");
+      const button = document.getElementById("definitionToggleBtn");
+
+      definitionVisible = !definitionVisible;
+
+      if (definitionVisible) {
+        definitionBox.classList.add("show");
+        button.textContent = "Hide Definition";
+      } else {
+        definitionBox.classList.remove("show");
+        button.textContent = "Show Definition";
+      }
     }
 
     function checkAnswer(selectedIndex, selectedButton) {
@@ -774,12 +441,16 @@
     function showFinalScore() {
       const quizData = getCurrentQuiz();
       const weekName = selectedWeek === "week1" ? "Week 1: Sanction Screening" : "Week 2: Introduction to Payment";
-      const percentage = Math.round((score / quizData.length) * 100);
 
       document.getElementById("topic").textContent = "Quiz Complete";
-      document.getElementById("badge").textContent = percentage + "%";
+      document.getElementById("badge").textContent = Math.round((score / quizData.length) * 100) + "%";
       document.getElementById("progressBar").style.width = "100%";
-      document.getElementById("definition").innerHTML = `<div class="final-card">You have completed <strong>${weekName}</strong>.<br><br>Your final score is <strong>${score} out of ${quizData.length}</strong>.</div>`;
+
+      const definitionBox = document.getElementById("definition");
+      definitionBox.innerHTML = `<div class="final-card">You have completed <strong>${weekName}</strong>.<br><br>Your final score is <strong>${score} out of ${quizData.length}</strong>.</div>`;
+      definitionBox.classList.add("show");
+
+      document.getElementById("definitionToggleBtn").style.display = "none";
       document.getElementById("question").textContent = "Great work — restart the quiz to practise again.";
       document.getElementById("options").innerHTML = "";
       document.getElementById("feedback").textContent = "";
