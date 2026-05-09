@@ -112,7 +112,20 @@
       transition: width 0.3s ease;
     }
 
+    .definition-toggle {
+      background: #dbeafe;
+      color: #1e3a8a;
+      border: 2px solid #1e3a8a;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .definition-toggle:hover {
+      background: #bfdbfe;
+    }
+
     .definition {
+      display: none;
       background: linear-gradient(135deg, #eff6ff, #eef2ff);
       padding: 18px;
       border-left: 6px solid #2563eb;
@@ -120,6 +133,10 @@
       border-radius: 14px;
       line-height: 1.6;
       font-size: 17px;
+    }
+
+    .definition.show {
+      display: block;
     }
 
     .question {
@@ -256,7 +273,9 @@
       <div class="progress-bar" id="progressBar"></div>
     </div>
 
+    <button class="definition-toggle" id="definitionToggleBtn" onclick="toggleDefinition()">Show Definition</button>
     <div class="definition" id="definition"></div>
+
     <div class="question" id="question"></div>
     <div id="options"></div>
     <div id="feedback"></div>
@@ -695,6 +714,7 @@
     let currentQuestion = 0;
     let score = 0;
     let answered = false;
+    let definitionVisible = false;
 
     function getCurrentQuiz() {
       return quizzes[selectedWeek];
@@ -714,6 +734,8 @@
 
     function loadQuestion() {
       answered = false;
+      definitionVisible = false;
+
       const quizData = getCurrentQuiz();
       const current = quizData[currentQuestion];
       const progress = ((currentQuestion + 1) / quizData.length) * 100;
@@ -721,7 +743,12 @@
 
       document.getElementById("topic").textContent = current.topic;
       document.getElementById("badge").textContent = weekText;
+
       document.getElementById("definition").textContent = current.definition;
+      document.getElementById("definition").classList.remove("show");
+      document.getElementById("definitionToggleBtn").textContent = "Show Definition";
+      document.getElementById("definitionToggleBtn").style.display = "inline-block";
+
       document.getElementById("question").textContent = current.question;
       document.getElementById("feedback").textContent = "";
       document.getElementById("progressBar").style.width = progress + "%";
@@ -737,6 +764,21 @@
         button.onclick = () => checkAnswer(index, button);
         optionsDiv.appendChild(button);
       });
+    }
+
+    function toggleDefinition() {
+      const definitionBox = document.getElementById("definition");
+      const button = document.getElementById("definitionToggleBtn");
+
+      definitionVisible = !definitionVisible;
+
+      if (definitionVisible) {
+        definitionBox.classList.add("show");
+        button.textContent = "Hide Definition";
+      } else {
+        definitionBox.classList.remove("show");
+        button.textContent = "Show Definition";
+      }
     }
 
     function checkAnswer(selectedIndex, selectedButton) {
@@ -779,7 +821,11 @@
       document.getElementById("topic").textContent = "Quiz Complete";
       document.getElementById("badge").textContent = percentage + "%";
       document.getElementById("progressBar").style.width = "100%";
+
       document.getElementById("definition").innerHTML = `<div class="final-card">You have completed <strong>${weekName}</strong>.<br><br>Your final score is <strong>${score} out of ${quizData.length}</strong>.</div>`;
+      document.getElementById("definition").classList.add("show");
+      document.getElementById("definitionToggleBtn").style.display = "none";
+
       document.getElementById("question").textContent = "Great work — restart the quiz to practise again.";
       document.getElementById("options").innerHTML = "";
       document.getElementById("feedback").textContent = "";
